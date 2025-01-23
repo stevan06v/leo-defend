@@ -1,29 +1,29 @@
+﻿using UnityEngine;
 using System.Collections;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Singletton Pattern
-    public static GameManager instance; 
+    public static GameManager instance;
+    void Awake() { instance = this; }
+
     public Spawner spawner;
-    public HealthManager healthManager;
-    public CurrencyManager currencyManager;
+    public HealthSystem health;
+    public CurrencySystem currency;
 
-    public EnemySpawner enemySpawner;
-
-    void Awake(){
-        instance = this;
-    }
-
-    void Start(){
-        GetComponent<HealthManager>().Init();
-        GetComponent<CurrencyManager>().Init();
+    void Start()
+    {
+        GetComponent<HealthSystem>().Init();
+        GetComponent<CurrencySystem>().Init();
 
         StartCoroutine(WaveStartDelay());
     }
 
-    IEnumerator WaveStartDelay(){
-        yield return new WaitForSeconds(4f);
+    IEnumerator WaveStartDelay()
+    {
+        //Wait for X seconds
+        yield return new WaitForSeconds(2f);
+        //Start the enemy spawning
         GetComponent<EnemySpawner>().StartSpawning();
-    }
+    }  
 }

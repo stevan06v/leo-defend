@@ -1,41 +1,44 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner instance;
+    void Awake(){instance=this;}
 
-    //singleton baby
-    void Awake(){instance =this;}
-    public List <GameObject> prefabs;
-    public List <Transform> spawnPoints;
-
+    //Enemy prefabs
+    public List<GameObject> prefabs;
+    //Enemy spawn root points
+    public List<Transform> spawnPoints;
+    //Enemy spawn interval
     public float spawnInterval=2f;
 
 
-    // will trigger spawning can be used before spawining enemies for dialougs
-    public void StartSpawning(){
+    public void StartSpawning()
+    {
+        //Call the spawn coroutine
         StartCoroutine(SpawnDelay());
     }
 
-    // Call Spawn Methode & Wait Intervall & Recall -> create spawn loop 
     IEnumerator SpawnDelay()
     {
+        //Call the spawn method
         SpawnEnemy();
+        //Wait spawn interval
         yield return new WaitForSeconds(spawnInterval);
+        //Recall the same coroutine
         StartCoroutine(SpawnDelay());
-
     }
 
-    public void SpawnEnemy(){
-        int randomPrefabID = Random.Range(0, prefabs.Count);
-        int randomSpawnPointID = Random.Range(0, spawnPoints.Count);
-        GameObject spawnedEnemy = Instantiate(prefabs[randomPrefabID], spawnPoints[randomSpawnPointID]);
-
-        Debug.Log("Enemy spawned successfully: " + randomSpawnPointID);
+    void SpawnEnemy()
+    {
+        //Randomize the enemy spawned
+        int randomPrefabID = Random.Range(0,prefabs.Count);
+        //Randomize the spawn point 
+        int randomSpawnPointID = Random.Range(0,spawnPoints.Count);
+        //Instantiate the enemy prefab
+        GameObject spawnedEnemy = Instantiate(prefabs[randomPrefabID],spawnPoints[randomSpawnPointID]);        
     }
-
 
 }
