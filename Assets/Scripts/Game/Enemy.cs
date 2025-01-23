@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Attack()
     {
-        animator.Play("Attack",0,0);
+        animator.Play("Attack", 0, 0);
         //Wait attackInterval 
         yield return new WaitForSeconds(attackInterval);
         //Attack Again
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     //Moving forward
     void Move()
     {
-        animator.Play("Move",0);
+        animator.Play("Move", 0);
         transform.Translate(-transform.right*moveSpeed*Time.deltaTime);
     }
 
