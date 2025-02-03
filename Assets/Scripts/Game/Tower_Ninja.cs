@@ -32,6 +32,8 @@ public class Tower_Ninja : Tower
     {
         //Instantiate shoot item
         GameObject shotItem = Instantiate(prefab_shootItem,transform);
+        SoundEffectPlayer.instance.playShoot();
+
         //Set its values  
         shotItem.GetComponent<ShootItem>().Init(damage);
     }

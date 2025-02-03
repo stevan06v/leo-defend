@@ -32,6 +32,7 @@ public class Tower_Pink : Tower
     public void IncreaseIncome()
     {
         GameManager.instance.currency.Gain(incomeValue);
+        SoundEffectPlayer.instance.playCollect();
         StartCoroutine(CoinIndication());
     }  
     //Show coin indication over the tower for short time (0.5 second)

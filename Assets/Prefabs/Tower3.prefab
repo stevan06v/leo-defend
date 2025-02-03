@@ -103,11 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
-  cost: 4
+  cost: 3
   damage: 1
   prefab_shootItem: {fileID: 1282590824706437793, guid: fe40418dc67bc9d45a10a7f220170031,
     type: 3}
-  interval: 4
+  interval: 2
 --- !u!61 &6872826002522672958
 BoxCollider2D:
   m_ObjectHideFlags: 0
